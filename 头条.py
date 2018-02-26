@@ -68,6 +68,19 @@ GROUP_END =5
 if __name__ == '__main__':
     pool = Pool()
     groups = ([x * 20 for x in range(GROUP_START, GROUP_END + 1)])
+
     pool.map(main, groups)
     pool.close()
     pool.join()
+
+    '''
+       map()是 Python 内置的高阶函数，它接收一个函数 f 和一个 list，并通过把函数 f 依次
+       作用在 list 的每个元素上，得到一个新的 list 并返回。
+       如：
+       def f(x):
+           return x*x
+       print map(f, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+       输出结果：
+
+       [1, 4, 9, 10, 25, 36, 49, 64, 81]
+       '''
