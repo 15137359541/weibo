@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./Pycharm/jq/1.5.2/jquery-1.5.2.min.js"></script>
+</head>
+<body>
+<input type="text" value="">
+<ul></ul>
+<script>
+    $(function () {
+        $("input").keyup(function () {
+            var $v = $(this).val();
+            $.ajax({
+                type:"post",
+                url:"https://suggest.taobao.com/sug?code=utf-8&callback=jsonp392&k=1&area=c2c&bucketid=20",
+                data:{
+                    q:$v
+                },
+                async:false,
+                dataType:"jsonp",
+					success:function(res){
+						console.log(res);
+						$("ul").empty();
+						$.each(res.result,function(i,v){
+							var $li = $("<li>");
+							console.log(i)
+                            console.log(v)
+							$li.html(v[0]);
+							$li.appendTo($("ul"));
+						})
+					}
+            })
+        })
+    })
+</script>
+
+</body>
+</html>
